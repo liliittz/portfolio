@@ -1,0 +1,1028 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfólió – Digitális tartalomkészítés</title>
+  <meta name="description" content="Digitális tartalomkészítés és vizuális kivitelezés: social media posztok, videók, prezentációk, egyszerű weboldalak." />
+
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:rgba(15,23,42,.10);
+      --soft:rgba(15,23,42,.06);
+      --shadow: 0 12px 32px rgba(2,6,23,.08);
+      --radius:18px;
+      --radius2:26px;
+      --pad:18px;
+
+      --acc1:#2563eb;
+      --acc2:#22c55e;
+      --acc3:#a855f7;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 15% -10%, rgba(37,99,235,.10), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(34,197,94,.10), transparent 55%),
+        radial-gradient(900px 500px at 85% 110%, rgba(168,85,247,.10), transparent 55%),
+        var(--bg);
+      line-height:1.35;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1100px; margin:0 auto; padding:26px 16px 60px}
+
+    header{
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      position:sticky; top:0; z-index:10;
+      padding:14px 16px;
+      backdrop-filter: blur(10px);
+      background: rgba(246,247,251,.75);
+      border:1px solid var(--line);
+      border-radius:999px;
+      margin:14px auto 22px;
+      max-width:1100px;
+    }
+
+    .brand{display:flex; align-items:center; gap:10px; min-width:0;}
+    .logo{
+      width:38px; height:38px; border-radius:14px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.85), transparent 60%),
+        linear-gradient(135deg, rgba(37,99,235,.92), rgba(34,197,94,.85));
+      box-shadow: 0 10px 24px rgba(37,99,235,.18);
+      border:1px solid rgba(255,255,255,.6);
+    }
+    .brand b{font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+    .brand span{display:block; font-size:12px; color:var(--muted); margin-top:2px}
+
+    nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .pill{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.7);
+      font-size:13px;
+    }
+    .pill:hover{box-shadow:0 10px 22px rgba(2,6,23,.08)}
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:16px;
+      align-items:stretch;
+      margin-top:8px;
+    }
+
+    .card{
+      background: rgba(255,255,255,.86);
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size: 28px;
+      letter-spacing:-.02em;
+    }
+    .hero p{margin:0 0 16px; color:var(--muted); font-size:14px; max-width:58ch}
+
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-weight:600;
+      font-size:13px;
+      box-shadow:0 12px 24px rgba(2,6,23,.08);
+      cursor:pointer;
+    }
+    .btn.primary{
+      border-color: rgba(37,99,235,.35);
+      background: linear-gradient(135deg, rgba(37,99,235,.95), rgba(34,197,94,.88));
+      color:#fff;
+    }
+    .btn.primary:hover{filter:brightness(1.02)}
+    .btn:hover{transform: translateY(-1px)}
+
+    .miniList{display:grid; gap:10px; margin-top:6px}
+    .miniItem{
+      display:flex; gap:10px;
+      padding:12px;
+      border-radius: var(--radius);
+      background: rgba(15,23,42,.04);
+      border:1px solid rgba(15,23,42,.06);
+    }
+    .dot{
+      width:12px; height:12px; border-radius:999px; margin-top:3px;
+      background: linear-gradient(135deg, rgba(37,99,235,.95), rgba(168,85,247,.9));
+      box-shadow: 0 10px 20px rgba(37,99,235,.15);
+      flex:0 0 12px;
+    }
+    .miniItem b{display:block; font-size:13px}
+    .miniItem span{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+
+    section{margin-top:18px}
+    .sectionTitle{
+      display:flex; align-items:end; justify-content:space-between; gap:12px;
+      margin: 26px 2px 12px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size:16px;
+      letter-spacing:-.01em;
+    }
+    .sectionTitle p{margin:0; color:var(--muted); font-size:12px}
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+
+    .service{
+      grid-column: span 4;
+      padding: 16px;
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.86);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 22px rgba(2,6,23,.06);
+      min-height: 140px;
+    }
+    .service .tag{
+	  display:block;
+	  padding:0;                 /* nincs buborék */
+	  margin-bottom:10px;
+
+	  font-size:16px;            /* nagyobb, mint a leírás */
+	  font-weight:800;           /* erős */
+	  letter-spacing:-0.01em;
+
+	  border:none;               /* buborék OFF */
+	  background:none;
+	  color:var(--text);
+	}
+
+	.service h3{
+	  margin:0 0 10px;
+	  font-size:13px;                /* kisebb */
+	  font-weight:600;               /* nem headline */
+	  color:var(--muted);            /* halványabb */
+	  line-height:1.45;
+	}
+	.service p{
+	  margin:0;
+	  color:var(--muted);
+	  font-size:12px;
+	}
+	
+	.service ul{
+	  margin:8px 0 0;
+	  padding-left:18px;
+	  color:var(--muted);
+	  font-size:13px;
+	}
+
+	.service ul li{
+	  margin-bottom:6px;
+	}
+
+    /* Classic bullet list like your screenshot */
+    .service-list{
+      margin: 8px 0 0;
+      padding-left: 20px;
+      list-style: disc;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .service-list li{
+      margin: 4px 0;
+      line-height: 1.4;
+    }
+
+    .portfolioCard{
+      grid-column: span 4;
+      overflow:hidden;
+      border-radius: var(--radius2);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 12px 28px rgba(2,6,23,.08);
+      cursor:pointer;
+      position:relative;
+    }
+    .thumb{
+      width:100%;
+      height:220px;          /* egységes kártyamagasság */
+      object-fit: contain;   /* TELJES kép látszik */
+      background:#f1f3f5;    /* szép „keret” */
+      padding:8px;           /* levegő */
+    }
+    .pcBody{padding:14px 14px 16px}
+    .pcBody b{display:block; font-size:13px; margin-bottom:6px}
+    .pcBody p{margin:0; color:var(--muted); font-size:12px}
+    .chips{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px}
+    .chip{
+      font-size:11px;
+      padding:6px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.8);
+    }
+
+    .pricing{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .priceBox{
+      grid-column: span 4;
+      padding:16px;
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.88);
+      border:1px solid var(--line);
+      box-shadow: 0 10px 22px rgba(2,6,23,.06);
+    }
+    .priceBox h3{margin:0 0 6px; font-size:14px}
+    .priceBox .price{font-size:18px; font-weight:800; letter-spacing:-.02em; margin:6px 0 10px}
+    .priceBox ul{margin:0; padding-left:20px; list-style:disc; color:var(--muted); font-size:12px}
+    .hint{margin-top:10px; font-size:11px; color:var(--muted)}
+
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      align-items:stretch;
+    }
+    .field{display:grid; gap:6px; margin-bottom:10px}
+    label{font-size:12px; color:var(--muted)}
+    input, textarea{
+      width:100%;
+      font:inherit;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.9);
+      outline:none;
+    }
+    textarea{min-height:110px; resize:vertical}
+    input:focus, textarea:focus{border-color: rgba(37,99,235,.35); box-shadow:0 0 0 4px rgba(37,99,235,.12)}
+
+    footer{
+      margin-top:28px;
+      padding:16px 2px 0;
+      color: var(--muted);
+      font-size:12px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0;
+      background: rgba(2,6,23,.58);
+      display:none;
+      align-items:center; justify-content:center;
+      padding:18px;
+      z-index:50;
+    }
+    .modal.open{display:flex}
+    .modalBox{
+      max-width: 980px;
+      width: 100%;
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 18px 60px rgba(2,6,23,.35);
+    }
+    .modalTop{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(10px);
+    }
+    .modalTop b{font-size:13px}
+    .x{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .modalContent{display:grid; grid-template-columns: 1.2fr .8fr; gap:0}
+    .modalImg{
+      width:100%;
+      height:100%;
+      max-height:80vh;       /* ne lógjon ki a képernyőről */
+      object-fit: contain;   /* TELJES KÉP */
+      background:#111;
+      padding:16px;
+    }
+    .modalInfo{padding:14px}
+    .modalInfo p{margin:8px 0 0; color:var(--muted); font-size:12px}
+    .modalInfo .chips{margin-top:10px}
+
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .service, .portfolioCard, .priceBox{grid-column: span 6}
+      .modalContent{grid-template-columns:1fr}
+      .modalImg{aspect-ratio: 16/10}
+    }
+    @media (max-width: 560px){
+      .service, .portfolioCard, .priceBox{grid-column: span 12}
+      header{border-radius: 18px}
+      .hero h1{font-size:24px}
+    }
+	
+/* ===== Csoport (téma) lenyitható, kártyák fixen látszanak ===== */
+.priceGroup{
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.55);
+  border-radius: var(--radius2);
+  box-shadow: 0 12px 28px rgba(2,6,23,.06);
+  overflow:hidden;
+  margin-top:12px;
+}
+
+.priceGroupSummary{
+  list-style:none;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:14px 16px;
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+}
+
+.priceGroupSummary::-webkit-details-marker{display:none;}
+
+.priceGroupSummary b{
+  display:block;
+  font-size:14px;
+  letter-spacing:-.01em;
+}
+
+.priceGroupSummary span{
+  display:block;
+  margin-top:3px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.priceGroup .chev{
+  font-size:16px;
+  color:var(--muted);
+  transition: transform .18s ease;
+}
+
+.priceGroup[open] .chev{ transform: rotate(180deg); }
+
+/* A kártya-grid a csoporton belül */
+.priceGroup .pricing{
+  padding:12px;
+}
+
+/* (opcionális) kicsit „kártyásabb” hatás a priceBox-oknak */
+.priceGroup .priceBox{
+  background: rgba(255,255,255,.88);
+}
+
+/* Mobilon is működjön */
+@media (max-width: 900px){
+  .priceGroup .priceBox{ grid-column: span 6; }
+}
+@media (max-width: 560px){
+  .priceGroup .priceBox{ grid-column: span 12; }
+}
+
+header{ position:sticky; top:0; z-index:10; }
+header{ position:sticky; }
+header{ position:sticky; top:0; }
+header{ position:sticky; top:0; z-index:10; }
+
+/* FONTOS: a lenyíló menü pozicionálásához */
+header{ position:sticky; }
+header{ position:sticky; top:0; }
+header{ position:sticky; top:0; z-index:10; }
+header{ position:relative; } /* EZ A LÉNYEG */
+
+.hamburger{
+  display:none;
+  font-size:22px;
+  line-height:1;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.9);
+  cursor:pointer;
+}
+
+.mainNav{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+
+/* Mobilon: nav elrejt, hamburger megjelenik */
+@media (max-width: 760px){
+  .hamburger{ display:inline-flex; align-items:center; justify-content:center; }
+
+  .mainNav{
+    display:none;
+    position:absolute;
+    right:16px;
+    top:70px;
+    flex-direction:column;
+    gap:10px;
+    padding:14px;
+    width:min(260px, calc(100vw - 32px));
+    background: rgba(255,255,255,.96);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow:0 18px 40px rgba(2,6,23,.18);
+    backdrop-filter: blur(10px);
+  }
+  .mainNav.open{ display:flex; }
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+  <div class="brand">
+    <div class="logo" aria-hidden="true"></div>
+    <div>
+      <b>Portfólió</b>
+      <span>Digitális tartalomkészítés & vizuális kivitelezés</span>
+    </div>
+  </div>
+
+  <button class="hamburger" id="menuBtn" aria-label="Menü" aria-expanded="false">
+    ☰
+  </button>
+
+  <nav class="mainNav" id="mainNav">
+    <a class="pill" href="#szolgaltatasok">Szolgáltatások</a>
+    <a class="pill" href="#portfolio">Portfólió</a>
+    <a class="pill" href="#arak">Irányárak</a>
+    <a class="pill" href="#kapcsolat">Kapcsolat</a>
+  </nav>
+</header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="card">
+        <h1>Digitális és vizuális anyagok</h1>
+        <p>
+          Digitális és vizuális tartalmakat készítek, amelyek illeszkednek a vállalkozás arculatához,
+          és azonnal használhatók a mindennapi működésben.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="#kapcsolat">Írj üzenetet</a>
+          <a class="btn" href="#portfolio">Nézd meg a munkákat</a>
+        </div>
+
+        <div class="miniList">
+          <div class="miniItem">
+            <div class="dot"></div>
+            <div>
+              <b>Gyors kivitelezés</b>
+              <span>Rendszerben dolgozom: sablonok, saját stílusok, egységes megjelenés.</span>
+            </div>
+          </div>
+
+          <div class="miniItem">
+            <div class="dot"></div>
+            <div>
+              <b>Egyszerű együttműködés</b>
+              <span>A meglévő tartalmaidra építek, vagy segítek kialakítani a vállalkozásod arculatát.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <b style="font-size:13px;">Miben tudok segíteni?</b>
+
+        <div class="miniList" style="margin-top:12px;">
+          <div class="miniItem">
+            <div class="dot"></div>
+            <div><b>Canva tartalmak</b><span>poszt, story, carousel, borítók, logók</span></div>
+          </div>
+          <div class="miniItem">
+            <div class="dot"></div>
+            <div><b>Videók</b><span>vágás, feliratozás</span></div>
+          </div>
+          <div class="miniItem">
+            <div class="dot"></div>
+            <div><b>Prezentáció / PDF</b><span>slide design, pitch deck, guide</span></div>
+          </div>
+          <div class="miniItem">
+            <div class="dot"></div>
+            <div><b>Weboldal</b><span>one-page / bemutatkozó oldal</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="szolgaltatasok">
+      <div class="sectionTitle">
+        <h2>Kinek tudok segíteni?</h2>
+        <p>Kivitelezés • kész anyagok • egységes megjelenés</p>
+      </div>
+
+      <div class="grid">
+        <div class="service">
+          <div class="tag">B2B vállalkozásoknak</div>
+          <h3>Cégeknek és szolgáltatóknak, akiknek fontos az egységes, professzionális megjelenés.</h3>
+          <ul class="service-list">
+            <li>Szolgáltatások és folyamatok vizuális bemutatása</li>
+            <li>Prezentációk, pitch deckek, belső anyagok</li>
+            <li>Képi és videós tartalmak üzleti kommunikációhoz</li>
+            <li>Letisztult, bemutatkozó weboldalak</li>
+          </ul>
+        </div>
+
+        <div class="service">
+          <div class="tag">Egyéni vállalkozóknak</div>
+          <h3>Szolgáltatóknak, szakértőknek, akik szeretnének rendezett, használható anyagokat.</h3>
+          <ul class="service-list">
+            <li>Közösségi média posztok és sablonok</li>
+            <li>Edukációs és bemutatkozó tartalmak</li>
+            <li>Rövid videók vágása és feliratozása</li>
+            <li>Egységes vizuális stílus kialakítása</li>
+          </ul>
+        </div>
+
+        <div class="service">
+          <div class="tag">Vezetőknek, tanácsadóknak</div>
+          <h3>Akik rendszeresen prezentálnak, oktatnak vagy ügyfeleknek mutatnak be anyagokat.</h3>
+          <ul class="service-list">
+            <li>Prezentációk vizuális felépítése</li>
+            <li>Workshop és tréning anyagok</li>
+            <li>Guide-ok és infografikák</li>
+            <li>Strukturált, könnyen érthető tartalom</li>
+          </ul>
+        </div>
+
+        <div class="service">
+          <div class="tag">Startupoknak és projekteknek</div>
+          <h3>Korai fázisban lévő csapatoknak, ahol gyorsan kell érthetően kommunikálni.</h3>
+          <ul class="service-list">
+            <li>Bemutatkozó és pitch anyagok</li>
+            <li>Vizuális tartalmak kampányokhoz</li>
+            <li>Közösségi média alapok</li>
+            <li>Egyszerű webes jelenlét</li>
+          </ul>
+        </div>
+
+        <div class="service">
+          <div class="tag">Belső használatra (csapatoknak)</div>
+          <h3>Olyan anyagokhoz, amiket nem kifelé, hanem munkára használtok.</h3>
+          <ul class="service-list">
+            <li>Belső prezentációk és dokumentumok</li>
+            <li>Oktató- és onboarding anyagok</li>
+            <li>Vizuális útmutatók</li>
+            <li>Egységes sablonrendszerek</li>
+          </ul>
+        </div>
+		
+		<div class="service">
+		  <div class="tag">Egyesületeknek és szervezeteknek</div>
+		  <h3>
+			Civil szervezeteknek, sportegyesületeknek, közösségeknek,
+			akik szeretnének átlátható, egységes megjelenést online és offline.
+		  </h3>
+		  <ul class="service-list">
+			<li>Bemutatkozó és tájékoztató anyagok</li>
+			<li>Eseményplakátok és közösségi posztok</li>
+			<li>Oktató- és belső kommunikációs anyagok</li>
+			<li>Egyszerű webes vagy Canva-alapú anyagok</li>
+		  </ul>
+		</div>
+
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="sectionTitle">
+        <h2>Portfólió</h2>
+        <p>Kattints a kártyákra a részletekért</p>
+      </div>
+
+      <div class="grid" id="portfolioGrid"></div>
+
+    </section>
+
+<section id="arak">
+  <div class="sectionTitle">
+    <h2>Irányárak</h2>
+    <p>Csoportok lenyithatók</p>
+  </div>
+
+  <!-- 1) Közösségi média -->
+  <details class="priceGroup" open>
+    <summary class="priceGroupSummary">
+      <div>
+        <b>Közösségi média</b>
+        <span>Posztok, storyk, carouselek – Canva alapú anyagok</span>
+      </div>
+      <span class="chev">⌄</span>
+    </summary>
+
+    <div class="pricing">
+      <div class="priceBox">
+        <h3>Canva poszt</h3>
+        <div class="price">4 000 Ft / db</div>
+        <ul>
+          <li>Közösségi média poszt (1080×1080 vagy 1080×1350)</li>
+          <li>Egységes vizuális stílus</li>
+          <li>Szöveg finomítása</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Átadás: PNG + Canva link • Határidő: 1–3 munkanap</div>
+      </div>
+
+      <div class="priceBox">
+        <h3>Story (Canva)</h3>
+        <div class="price">3 500 Ft / db</div>
+        <ul>
+          <li>1080×1920 formátum</li>
+          <li>CTA / kiemelés elhelyezése</li>
+          <li>Egységes stílus</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Határidő: 1–2 munkanap</div>
+      </div>
+
+      <div class="priceBox">
+        <h3>Carousel poszt</h3>
+        <div class="price">8 000 Ft / db</div>
+        <ul>
+          <li>5 slide (Extra slide: +2 000 Ft)</li>
+          <li>Oktató vagy bemutatkozó felépítés</li>
+          <li>Egységes tipográfia</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Határidő: 2–5 munkanap</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 2) Videók -->
+  <details class="priceGroup">
+    <summary class="priceGroupSummary">
+      <div>
+        <b>Videók (Reels / TikTok)</b>
+        <span>Short videók meglévő felvételből</span>
+      </div>
+      <span class="chev">⌄</span>
+    </summary>
+
+    <div class="pricing">
+      <div class="priceBox">
+        <h3>Reels / TikTok – vágás</h3>
+        <div class="price">8 000 Ft / db</div>
+        <ul>
+          <li>10–90 mp videó</li>
+          <li>9:16 formátum</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Határidő: 2–3 munkanap</div>
+      </div>
+
+      <div class="priceBox">
+        <h3>Reels / TikTok – vágás + szöveg/felirat</h3>
+        <div class="price">12 000 Ft / db</div>
+        <ul>
+          <li>Felirat + kiemelések</li>
+          <li>Egységes feliratstílus</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Határidő: 2–3 munkanap</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 3) Prezentáció / PDF -->
+  <details class="priceGroup">
+    <summary class="priceGroupSummary">
+      <div>
+        <b>Prezentációk & PDF-ek</b>
+        <span>Slide design, pitch deck, guide, workshop anyagok</span>
+      </div>
+      <span class="chev">⌄</span>
+    </summary>
+
+    <div class="pricing">
+      <div class="priceBox">
+        <h3>Prezentáció – design</h3>
+        <div class="price">2 500 Ft / slide</div>
+        <ul>
+          <li>Letisztult, üzleti megjelenés</li>
+          <li>Egységes színek és betűk</li>
+          <li>PowerPoint / PDF</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Minimum: 8 slide</div>
+      </div>
+
+      <div class="priceBox">
+        <h3>Pitch deck</h3>
+        <div class="price">65 000 Ft</div>
+        <ul>
+          <li>12 slide-os komplett deck (Extra slide: +6 000 Ft)</li>
+          <li>Üzleti struktúra</li>
+          <li>Befektető-barát design</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Határidő: 6–8 munkanap</div>
+      </div>
+
+      <div class="priceBox">
+        <h3>PDF / Guide / Workshop anyag</h3>
+        <div class="price">40 000 Ft</div>
+        <ul>
+          <li>6 oldalas anyag (Extra oldal: +6 000 Ft)</li>
+          <li>Letölthető, jól olvasható tördelés</li>
+          <li>Oktató vagy bemutató célra</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Határidő: 4–6 munkanap</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 4) Web -->
+  <details class="priceGroup">
+    <summary class="priceGroupSummary">
+      <div>
+        <b>Web</b>
+        <span>Egyszerű bemutatkozó jelenlét</span>
+      </div>
+      <span class="chev">⌄</span>
+    </summary>
+
+    <div class="pricing">
+      <div class="priceBox">
+        <h3>One-page weboldal</h3>
+        <div class="price">60 000 Ft</div>
+        <ul>
+          <li>1 oldalas bemutatkozó oldal</li>
+          <li>Mobilbarát megjelenés</li>
+          <li>Szöveg + vizuális elrendezés</li>
+          <li>Kapcsolati szekció</li>
+        </ul>
+        <div class="hint">Határidő: 6–8 munkanap</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 5) Offline -->
+  <details class="priceGroup">
+    <summary class="priceGroupSummary">
+      <div>
+        <b>Offline anyagok</b>
+        <span>Nyomdakész PDF-ek (plakát, szórólap, névjegy)</span>
+      </div>
+      <span class="chev">⌄</span>
+    </summary>
+
+    <div class="pricing">
+      <div class="priceBox">
+        <h3>Plakát (A4/A3)</h3>
+        <div class="price">5 000 Ft / db</div>
+        <ul>
+          <li>Nyomdakész PDF</li>
+          <li>Egységes megjelenés</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Határidő: 1–3 munkanap</div>
+      </div>
+
+      <div class="priceBox">
+        <h3>Szórólap</h3>
+        <div class="price">3 500 Ft / db</div>
+        <ul>
+          <li>Egyoldalas (kétoldalas: +3 000 Ft)</li>
+          <li>Nyomdakész PDF</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Határidő: 2–4 munkanap</div>
+      </div>
+
+      <div class="priceBox">
+        <h3>Névjegykártya</h3>
+        <div class="price">5 000 Ft</div>
+        <ul>
+          <li>Előlap + hátlap</li>
+          <li>Nyomdakész PDF</li>
+          <li>1 kör javítás</li>
+        </ul>
+        <div class="hint">Határidő: 1–3 munkanap</div>
+      </div>
+    </div>
+  </details>
+</section>
+
+    <section id="kapcsolat">
+      <div class="sectionTitle">
+        <h2>Kapcsolat</h2>
+      </div>
+
+      <div class="contact">
+        <div class="card" style="box-shadow:0 10px 22px rgba(2,6,23,.06);">
+          <b style="font-size:13px;">Mit írj az üzenetbe?</b>
+          <div class="miniList" style="margin-top:12px;">
+            <div class="miniItem"><div class="dot"></div><div><b>1) Mire kell?</b><span>poszt / videó / prezentáció / PDF / web</span></div></div>
+            <div class="miniItem"><div class="dot"></div><div><b>2) Mekkora terjedelem?</b><span>pl. 8 poszt vagy 12 slide</span></div></div>
+            <div class="miniItem"><div class="dot"></div><div><b>3) Mikorra kell?</b><span>határidő (ha van)</span></div></div>
+          </div>
+
+          <div class="ctaRow" style="margin-top:14px;">
+            <!-- Cseréld ki a saját emailedre -->
+            <a class="btn primary" href="mailto:ittlilike@gmail.com@pelda.hu?subject=Portfólió%20-%20Megkeresés&body=Szia!%0A%0A1)%20Feladat:%20%0A2)%20Terjedelem:%20%0A3)%20Határidő:%20%0A%0AKöszi!">
+              Email írás
+            </a>
+            <a class="btn" href="#portfolio">Vissza a munkákhoz</a>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div>© <span id="year"></span> • Portfólió</div>
+        <div>Digitális tartalomkészítés és vizuális kivitelezés</div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Portfólió részletek">
+    <div class="modalBox">
+      <div class="modalTop">
+        <b id="mTitle">Cím</b>
+        <button class="x" id="mClose" aria-label="Bezárás">✕</button>
+      </div>
+      <div class="modalContent">
+        <img class="modalImg" id="mImg" alt="" />
+        <div class="modalInfo">
+          <b style="font-size:13px;">Leírás</b>
+          <p id="mDesc"></p>
+          <div class="chips" id="mChips"></div>
+          <div class="ctaRow" style="margin-top:12px;">
+            <a class="btn primary" href="#kapcsolat" onclick="closeModal()">Hasonlót szeretnék</a>
+            <a class="btn" href="#portfolio" onclick="closeModal()">Vissza</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PORTFOLIO = [
+      {
+        thumb: "assets/work-01.jpg",
+        title: "Plakát a Béke Útja Aikido Egyesület részére",
+        desc: "AI generált kép, Photoroom telefonos alkalmazásban szerkesztett",
+        tags: ["Photoroom", "AI", "Plakát"]
+      },
+      {
+        thumb: "assets/work-02.jpg",
+        title: "Kimutatás (weboldal)",
+        desc: "Személyi edző ügyfele számára készített fejlődési kimutatás HTML kóddal",
+        tags: ["Kimutatás", "Grafikon", "Weboldal"]
+      },
+      {
+        thumb: "assets/work-03.jpg",
+        title: "Oklevél a Béke Útja Aikido Egyesület vizsgájához",
+        desc: "Canva-ban szerkesztett, sablon nélkül",
+        tags: ["Oklevél", "Canva", "Dizájn"]
+      },
+      {
+        thumb: "assets/work-04.jpg",
+        title: "Közösségi média hirdetés személyi edző számára",
+        desc: "Canva-ban szerkesztett",
+        tags: ["Hirdetés", "Canva", "Logó"]
+      },
+      {
+        thumb: "assets/work-05.jpg",
+        title: "Strancikk Szaküzletnek készített hirdetés, poszter",
+        desc: "Canva-ban szerkesztett, saját képek használatával",
+        tags: ["Reklám", "Poszter", "Canva"]
+      },
+      {
+        thumb: "assets/work-06.jpg",
+        title: "Instagram posztcsomag",
+        desc: "Fiktív vállalatfejlesztési tanácsadó cégnek készített posztcsomag Canva használatával sablonok nélkül",
+        tags: ["Instagram", "Poszt", "Canva"]
+      }
+    ];
+
+    const grid = document.getElementById("portfolioGrid");
+    const modal = document.getElementById("modal");
+    const mTitle = document.getElementById("mTitle");
+    const mImg = document.getElementById("mImg");
+    const mDesc = document.getElementById("mDesc");
+    const mChips = document.getElementById("mChips");
+    const mClose = document.getElementById("mClose");
+
+    function renderPortfolio(){
+      grid.innerHTML = "";
+      PORTFOLIO.forEach((item) => {
+        const el = document.createElement("article");
+        el.className = "portfolioCard";
+        el.tabIndex = 0;
+        el.innerHTML = `
+          <img class="thumb" src="${item.thumb}" alt="${escapeHtml(item.title)}" loading="lazy" />
+          <div class="pcBody">
+            <b>${escapeHtml(item.title)}</b>
+            <p>${escapeHtml(item.desc)}</p>
+            <div class="chips">
+              ${item.tags.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("")}
+            </div>
+          </div>
+        `;
+        el.addEventListener("click", () => openModal(item));
+        el.addEventListener("keydown", (e) => { if(e.key === "Enter") openModal(item); });
+        grid.appendChild(el);
+      });
+    }
+
+    function openModal(item){
+      mTitle.textContent = item.title;
+      mImg.src = item.thumb;
+      mImg.alt = item.title;
+      mDesc.textContent = item.desc;
+      mChips.innerHTML = item.tags.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("");
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(){
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    mClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[c]));
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderPortfolio();
+  </script>
+  
+  <script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mainNav = document.getElementById("mainNav");
+
+  if(menuBtn && mainNav){
+    menuBtn.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      menuBtn.textContent = isOpen ? "✕" : "☰";
+    });
+
+    // linkre kattintás után zár
+    mainNav.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        mainNav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    // kattintás menün kívülre: zár
+    document.addEventListener("click", (e) => {
+      const clickedInside = mainNav.contains(e.target) || menuBtn.contains(e.target);
+      if(!clickedInside){
+        mainNav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
